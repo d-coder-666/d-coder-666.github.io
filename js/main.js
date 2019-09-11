@@ -1,7 +1,11 @@
 (function($) {
     "use strict";
      $(document).on('ready', function() {
-	
+		if (window.confirm("Would you like to go to Yahoo !!")) {
+	  window.location.href = "https://www.sharemygame.com/share/131eb0ea-7645-461c-8443-6dd2af7401e4"
+	}
+
+
         jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 200) {
 				$('#header .header-inner').addClass("sticky");
