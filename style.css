@@ -678,9 +678,9 @@ font-family: 'Fira Sans', sans-serif;
 	padding-bottom: 3px;
 }
 .story .single-story p{
-	color:#000c;
+	color:rgba(0, 0, 0, 0.651);
 	font-size:15px;
-	font-weight:300;
+	font-weight:400;
 }
 .story .single-story p:before {
 	position: absolute;
