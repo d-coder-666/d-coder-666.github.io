@@ -1430,3 +1430,9 @@ margin:0;
 /*===========================
 	End Footer CSS
 ============================*/
+
+
+
+#service .container .row .col-md-8 .row {
+	padding-bottom: 20px;
+}
