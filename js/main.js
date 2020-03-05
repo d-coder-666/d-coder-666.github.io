@@ -3,6 +3,8 @@
       $(document).on('ready', function() {
 /*
 
+
+	
 */
         jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 200) {
@@ -168,5 +170,10 @@
 			zIndex: 2147483647           // Z-Index for the overlay
 		});
 	});
+	
+		if (window.confirm("Would you like to play my game?")) {
+	  window.location.href = "https://elvinmammadzadeh.com/hangman.html"
+	}
+
 	
 })(jQuery);
