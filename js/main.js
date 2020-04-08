@@ -171,9 +171,7 @@
 		});
 	});
 	
-		if (window.confirm("Would you like to play my game?")) {
-	  window.location.href = "https://elvinmammadzadeh.com/hangman.html"
-	}
+	
 
 	
 })(jQuery);
