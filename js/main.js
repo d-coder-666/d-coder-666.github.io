@@ -1,177 +1,123 @@
-(function($) {
-    "use strict";
-      $(document).on('ready', function() {
-/*
+(function ($) {
+	"use strict";
+	var nav = $('nav');
+  var navHeight = nav.outerHeight();
+  
+  $('.navbar-toggler').on('click', function() {
+    if( ! $('#mainNav').hasClass('navbar-reduce')) {
+      $('#mainNav').addClass('navbar-reduce');
+    }
+  })
 
+  // Preloader
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      $('#preloader').delay(100).fadeOut('slow', function () {
+        $(this).remove();
+      });
+    }
+  });
 
-	
-*/
-        jQuery(window).on('scroll', function() {
-			if ($(this).scrollTop() > 200) {
-				$('#header .header-inner').addClass("sticky");
-			} else {
-				$('#header .header-inner').removeClass("sticky");
-			}
-		});
-		
-		
-		// Mobile Menu JS  //
-		$(function(){
-			$('#nav').slicknav({
-				'label' : '',
-				'prependTo': '.mobile-menu',
-				
-			});
-		});
+  // Back to top button
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('.back-to-top').fadeIn('slow');
+    } else {
+      $('.back-to-top').fadeOut('slow');
+    }
+  });
+  $('.back-to-top').click(function(){
+    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
+    return false;
+  });
 
-		// Testimonial JS  //
-		$('.testimonial-slider').owlCarousel({
-			items:1,
-			autoplay:false,
-			autoplayTimeout:4500,
-			smartSpeed: 1000,
-			autoplayHoverPause:true,
-			animateIn:'bounceInRight',
-			animateOut:'bounceOutRight',
-			loop:true,
-			merge:true,
-			nav:false,
-			dots:true,
-		});
-		
-		
-		// Clients JS  //
-		$('.clients-slider').owlCarousel({
-			autoplay:true,
-			autoplayTimeout:4500,
-			margin:15,
-			smartSpeed: 1000,
-			autoplayHoverPause:true,
-			loop:true,
-			nav:true,
-			dots:false,
-			responsive:{
-				300: {
-					items:1,
-				},
-				480: {
-					items:2,
-				},
-				768: {
-					items:3,
-					nav:false,
-				},
-				1170: {
-					items:5,
-					nav:true,
-				}
-			}
-		});
-		
-		// Porgress Bar JS  //
-		$('.progress.two .progress-bar').each(function () {
-			var $this = $(this);
-			var width = $(this).data('percent');
-			$this.css({
-				'transition': 'width 3s'
-			});
-			setTimeout(function () {
-				$this.appear(function () {
-					$this.css('width', width + '%');
-				});
-			}, 500);
-		});
-	
-		
-		if ($.fn.onePageNav) {
-			$('#nav').onePageNav({
-				currentClass: 'current',
-				scrollSpeed: 1000,
-				easing: 'easeInOutQuart'
-			});
-		}
-		
-		
-
-		// Video Popup  //
-		$('.video-popup').magnificPopup({
-			type: 'video',	
-		});
-		
-		// Wow JS //
-		var wow = new WOW(
-		{
-			boxClass:     'wow',      // animated element css class (default is wow)
-			animateClass: 'animated', // animation css class (default is animated)
-			offset:       0,          // distance to the element when triggering the animation (default is 0)
-			mobile:       false,       // trigger animations on mobile devices (default is true)
-			live:         true,       // act on asynchronously loaded content (default is true)
-			callback:     function(box) {
-			  // the callback is fired every time an animation is started
-			  // the argument that is passed in is the DOM node being animated
-			},
-			scrollContainer: null // optional scroll container selector, otherwise use window
-		  }
-		);
-		wow.init();
-		
-		// Isotop JS //
-		$(window).on('load', function() {
-			
-			if ($.fn.isotope) {
-                $(".isotop-active").isotope({
-                    filter: '*',
-                });
-
-					$('.works-menu ul li').on('click', function() {
-                    $(".works-menu ul li").removeClass("active");
-                    $(this).addClass("active");
-
-                    var selector = $(this).attr('data-filter');
-                    $(".isotop-active").isotope({
-                        filter: selector,
-                        animationOptions: {
-                            duration: 750,
-                            easing: 'easeOutCirc',
-                            queue: false,
-                        }
-                    });
-                    return false;
-                });
-            }
-		});
-		
-		/*======================================
-			Animate Scroll JS
-		======================================*/ 
-		$('a').on('click', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top -0 
-			}, 1000, 'easeInOutQuart');
-			event.preventDefault();
-		});
-		
-
-		// ScrollUp JS //
-		$.scrollUp({
-			scrollName: 'scrollUp',      // Element ID
-			scrollDistance: 300,         // Distance from top/bottom before showing element (px)
-			scrollFrom: 'top',           // 'top' or 'bottom'
-			scrollSpeed: 1000,            // Speed back to top (ms)
-			easingType: 'easeInOutQuart',        // Scroll to top easing (see http://easings.net/)
-			animationSpeed: 200,         // Animation speed (ms)
-			scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
-			scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
-			scrollText: ["<i class='fa fa-angle-up'></i>"], // Text for element, can contain HTML
-			scrollTitle: false,          // Set a custom <a> title if required.
-			scrollImg: false,            // Set true to use image
-			activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-			zIndex: 2147483647           // Z-Index for the overlay
-		});
+	/*--/ Star ScrollTop /--*/
+	$('.scrolltop-mf').on("click", function () {
+		$('html, body').animate({
+			scrollTop: 0
+		}, 1000);
 	});
-	
-	
 
-	
+	/*--/ Star Counter /--*/
+	$('.counter').counterUp({
+		delay: 15,
+		time: 2000
+	});
+
+	/*--/ Star Scrolling nav /--*/
+	$('a.js-scroll[href*="#"]:not([href="#"])').on("click", function () {
+		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+			if (target.length) {
+				$('html, body').animate({
+					scrollTop: (target.offset().top - navHeight + 5)
+				}, 1000, "easeInOutExpo");
+				return false;
+			}
+		}
+	});
+
+	// Closes responsive menu when a scroll trigger link is clicked
+	$('.js-scroll').on("click", function () {
+		$('.navbar-collapse').collapse('hide');
+	});
+
+	// Activate scrollspy to add active class to navbar items on scroll
+	$('body').scrollspy({
+		target: '#mainNav',
+		offset: navHeight
+	});
+	/*--/ End Scrolling nav /--*/
+
+	/*--/ Navbar Menu Reduce /--*/
+	$(window).trigger('scroll');
+	$(window).on('scroll', function () {
+		var pixels = 50; 
+		var top = 1200;
+		if ($(window).scrollTop() > pixels) {
+			$('.navbar-expand-md').addClass('navbar-reduce');
+			$('.navbar-expand-md').removeClass('navbar-trans');
+		} else {
+			$('.navbar-expand-md').addClass('navbar-trans');
+			$('.navbar-expand-md').removeClass('navbar-reduce');
+		}
+		if ($(window).scrollTop() > top) {
+			$('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
+		} else {
+			$('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
+		}
+	});
+
+	/*--/ Star Typed /--*/
+	if ($('.text-slider').length == 1) {
+    var typed_strings = $('.text-slider-items').text();
+		var typed = new Typed('.text-slider', {
+			strings: typed_strings.split(','),
+			typeSpeed: 80,
+			loop: true,
+			backDelay: 1100,
+			backSpeed: 30
+		});
+	}
+
+	/*--/ Testimonials owl /--*/
+	$('#testimonial-mf').owlCarousel({
+		margin: 20,
+		autoplay: true,
+		autoplayTimeout: 4000,
+		autoplayHoverPause: true,
+		responsive: {
+			0: {
+				items: 1,
+			}
+		}
+	});
+
+
+
+		$('#message-sender').on('shown.bs.modal', function () {
+			$('#myInput').trigger('focus')
+		  })
+
 })(jQuery);
